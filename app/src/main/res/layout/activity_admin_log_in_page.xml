@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Admin_LogIn_Page">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Admin LogIn Page"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="100dp"
+        android:textSize="30dp"
+        ></TextView>
+
+    <LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:layout_marginLeft="100dp"
+    >
+    <Button
+        android:id="@+id/admin_log_in_page_user1"
+        android:layout_marginTop="40dp"
+        android:layout_width="140dp"
+        android:layout_height="40dp"
+        android:text="User 1"
+        android:textAllCaps="false"
+        android:layout_marginLeft="30dp">
+    </Button>
+
+    <Button
+        android:id="@+id/admin_log_in_page_user2"
+        android:layout_marginTop="40dp"
+        android:layout_width="140dp"
+        android:layout_height="40dp"
+        android:text="User 2"
+        android:textAllCaps="false"
+        android:layout_marginLeft="30dp">
+    </Button>
+
+
+    <Button
+        android:id="@+id/admin_log_in_page_user3"
+        android:layout_marginTop="40dp"
+        android:layout_width="140dp"
+        android:layout_height="40dp"
+        android:text="User 3"
+        android:textAllCaps="false"
+        android:layout_marginLeft="30dp">
+    </Button>
+
+    <Button
+        android:id="@+id/admin_log_in_page_delete_user"
+        android:layout_marginTop="40dp"
+        android:layout_width="140dp"
+        android:layout_height="40dp"
+        android:text="Delete User"
+        android:textAllCaps="false"
+        android:layout_marginLeft="30dp">
+    </Button>
+
+    <Button
+        android:id="@+id/admin_log_in_page_back"
+        android:layout_marginTop="40dp"
+        android:layout_width="140dp"
+        android:layout_height="40dp"
+        android:text="Add User"
+        android:textAllCaps="false"
+        android:layout_marginLeft="30dp">
+    </Button>
+</LinearLayout>
+
+</LinearLayout>

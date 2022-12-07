@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".User_Log_In">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginLeft="30dp"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:text="Welcome"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="30dp"
+            android:textSize="30dp"
+            ></TextView>
+
+        <EditText
+            android:id="@+id/user_welcome_name"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:textSize="30dp"
+            android:inputType="text"
+            ></EditText>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginLeft="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="100dp"
+        >
+        <EditText
+            android:id="@+id/user_name"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:hint="Name"
+            android:inputType="text"
+            ></EditText>
+        <EditText
+            android:id="@+id/user_dob"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:hint="DOB"
+            android:inputType="date"
+            ></EditText>
+
+        <Button
+            android:id="@+id/user_log_in_trips"
+            android:layout_marginTop="40dp"
+            android:layout_width="140dp"
+            android:layout_height="40dp"
+            android:text="Trips">
+        </Button>
+
+        <Button
+            android:id="@+id/user_log_in_back"
+            android:layout_marginTop="40dp"
+            android:layout_width="140dp"
+            android:layout_height="40dp"
+            android:text="back">
+        </Button>
+
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".admin_overall_driver_rating">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginLeft="30dp"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:text="Driver name"
+            android:layout_marginLeft="50dp"
+            android:layout_marginTop="30dp"
+            android:textSize="20dp"
+            ></TextView>
+
+        <EditText
+            android:id="@+id/user_welcome_name"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:textSize="30dp"
+            android:inputType="text"
+            ></EditText>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginLeft="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        >
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:text="Total Distance"
+            android:textSize="15dp">
+        </TextView>
+
+        <EditText
+            android:id="@+id/overall_driver_rating_distance"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:inputType="numberSigned"
+            ></EditText>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_marginLeft="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        >
+        <TextView
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:text="Avg AFE"
+            android:textSize="15dp">
+        </TextView>
+
+        <EditText
+            android:id="@+id/overall_driver_rating_afe"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:inputType="numberSigned"
+            ></EditText>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginLeft="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        >
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:text="Total Time"
+            android:textSize="15dp">
+        </TextView>
+
+        <EditText
+            android:id="@+id/overall_driver_rating_time"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:inputType="numberSigned"
+            ></EditText>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginLeft="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        >
+        <TextView
+            android:layout_width="140dp"
+            android:layout_height="40dp"
+            android:text="Total Fuel Consumed"
+            android:textSize="15dp">
+        </TextView>
+
+        <EditText
+            android:id="@+id/overall_driver_rating_fuel_consumed"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:inputType="numberSigned"
+            ></EditText>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_marginLeft="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        >
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:text="Driver rating"
+            android:textSize="15dp">
+        </TextView>
+
+        <EditText
+            android:id="@+id/overall_driver_rating_rating"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:inputType="numberSigned"
+            ></EditText>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/overall_driver_rating_back"
+        android:layout_marginTop="40dp"
+        android:layout_width="140dp"
+        android:layout_height="40dp"
+        android:text="back"
+        android:layout_marginLeft="30dp">
+    </Button>
+
+</LinearLayout>

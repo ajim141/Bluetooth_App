@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CreateNewUser">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="CreateNewUser"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="100dp"
+        android:textSize="30dp"
+        ></TextView>
+
+    <LinearLayout
+        android:layout_marginLeft="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginTop="30dp">
+
+        <ImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginLeft="40dp"
+            android:src="@drawable/istockphoto_522855255_612x612"
+            >
+        </ImageView>
+
+        <EditText
+        android:id="@+id/createNewUser_name"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:hint="enter your name"
+        android:inputType="text"
+        ></EditText>
+
+        <EditText
+            android:id="@+id/createNewUser_phone"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:hint="enter phone no"
+            android:inputType="phone"
+            ></EditText>
+
+    <EditText
+        android:id="@+id/createNewUser_DOB"
+        android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:hint="enter DOB"
+        android:inputType="date"
+            ></EditText>
+
+        <EditText
+        android:id="@+id/createNewUser_Password"
+        android:layout_width="180dp"
+        android:layout_height="40dp"
+        android:hint="enter your password"
+        android:inputType="numberPassword"
+            ></EditText>
+
+        <EditText
+            android:id="@+id/createNewUser_confirmPassword"
+            android:layout_width="200dp"
+            android:layout_height="40dp"
+            android:hint="confirm your password"
+            android:inputType="numberPassword"
+            ></EditText>
+
+        <Button
+            android:id="@+id/createNewUser_save"
+            android:layout_marginTop="40dp"
+            android:layout_width="140dp"
+            android:layout_height="40dp"
+            android:text="save"
+            android:layout_marginLeft="30dp">
+        </Button>
+        <Button
+            android:id="@+id/createNewUser_back"
+            android:layout_marginTop="40dp"
+            android:layout_width="140dp"
+            android:layout_height="40dp"
+            android:text="back"
+            android:layout_marginLeft="30dp">
+        </Button>
+
+        <Button
+            android:id="@+id/createNewUser_view"
+            android:layout_marginTop="40dp"
+            android:layout_width="140dp"
+            android:layout_height="40dp"
+            android:text="view"
+            android:layout_marginLeft="30dp">
+        </Button>
+    </LinearLayout>
+</LinearLayout>

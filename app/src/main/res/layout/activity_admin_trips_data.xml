@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Admin_Trips_Data">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Trip"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="50dp"
+        android:textSize="30dp"
+        ></TextView>
+        <EditText
+            android:id="@+id/admin_trip_trip_number"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:inputType="numberSigned"
+            android:layout_marginTop="30dp"
+            android:hint="x"
+            ></EditText>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="of"
+            android:layout_marginTop="30dp"
+            android:textSize="30dp"
+            ></TextView>
+
+        <EditText
+            android:id="@+id/admin_trip_user"
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:inputType="numberSigned"
+            android:layout_marginTop="30dp"
+            android:hint="user y"
+            ></EditText>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginLeft="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        >
+        <TextView
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:text="Distance"
+            android:textSize="15dp">
+        </TextView>
+
+        <EditText
+            android:id="@+id/admin_trip_distance"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:inputType="numberSigned"
+            ></EditText>
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_marginLeft="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        >
+        <TextView
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:text="AFE"
+            android:textSize="15dp">
+        </TextView>
+
+        <EditText
+            android:id="@+id/admin_trip_afe"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:inputType="numberSigned"
+            ></EditText>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginLeft="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        >
+        <TextView
+            android:layout_width="60dp"
+            android:layout_height="40dp"
+            android:text="Time"
+            android:textSize="15dp">
+        </TextView>
+
+        <EditText
+            android:id="@+id/admin_trip_time"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:inputType="numberSigned"
+            ></EditText>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_marginLeft="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        >
+        <TextView
+            android:layout_width="110dp"
+            android:layout_height="40dp"
+            android:text="Fuel Consumed"
+            android:textSize="15dp">
+        </TextView>
+
+        <EditText
+            android:id="@+id/admin_trip_fuel_consumed"
+            android:layout_width="150dp"
+            android:layout_height="40dp"
+            android:inputType="numberSigned"
+            ></EditText>
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/admin_trip_data_overall"
+        android:layout_marginTop="40dp"
+        android:layout_width="140dp"
+        android:layout_height="40dp"
+        android:text="Overall"
+        android:layout_marginLeft="30dp">
+    </Button>
+    <Button
+        android:id="@+id/admin_trip_data_back"
+        android:layout_marginTop="40dp"
+        android:layout_width="140dp"
+        android:layout_height="40dp"
+        android:text="back"
+        android:layout_marginLeft="30dp">
+    </Button>
+
+</LinearLayout>
