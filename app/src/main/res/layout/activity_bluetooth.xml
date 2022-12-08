@@ -44,10 +44,27 @@
             ></Button>
     </LinearLayout>
 
+
+    <TextView
+        android:text="bonded device"
+        android:layout_width="match_parent"
+        android:layout_height="20dp">
+    </TextView>
     <ListView
         android:id="@+id/btlist"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="300dp">
     </ListView>
 
-</>
+    <TextView
+        android:text="available device"
+        android:layout_width="match_parent"
+        android:layout_height="20dp">
+    </TextView>
+    <ListView
+        android:id="@+id/btlistsearch"
+        android:layout_width="match_parent"
+        android:layout_height="300dp">
+    </ListView>
+
+</LinearLayout>
