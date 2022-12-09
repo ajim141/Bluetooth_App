@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -31,6 +32,7 @@ public class Bluetooth_activity extends AppCompatActivity {
     ListView btlist, available_list;
     BluetoothAdapter BTadapter;
     ArrayAdapter<String> arrayAdapter, arraysearchadapter;
+    TextView bt1, bt2 ,bt3;
 //    BroadcastReceiver btbroadcastlisner;
 
 
@@ -67,6 +69,10 @@ public class Bluetooth_activity extends AppCompatActivity {
         showbutton = findViewById(R.id.showbutton);
         searchbutton = findViewById(R.id.searchbutton);
 
+        bt1 = findViewById(R.id.bt1);
+        bt2 = findViewById(R.id.bt2);
+        bt3 = findViewById(R.id.bt3);
+
         //listview
         btlist = findViewById(R.id.btlist);
         available_list = findViewById(R.id.btlistsearch);
@@ -85,6 +91,10 @@ public class Bluetooth_activity extends AppCompatActivity {
 
         IntentFilter intentFilter1 = new IntentFilter(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
         registerReceiver(btbroadcastlisner,intentFilter1);
+
+        if(BTadapter.getScanMode()!=BluetoothAdapter.SCAN_MODE_CONNECTABLE_DISCOVERABLE){
+            System.out.println(BluetoothAdapter.SCAN_MODE_CONNECTABLE_DISCOVERABLE);
+        }
 
         buttonOn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -142,9 +152,7 @@ public class Bluetooth_activity extends AppCompatActivity {
                 checkPermissions();
                Boolean val = BTadapter.startDiscovery();
                 Toast.makeText(Bluetooth_activity.this, "val" + val, Toast.LENGTH_SHORT).show();
-
                 Log.e("string", "after");
-
             }
         });
     }
@@ -158,6 +166,11 @@ public class Bluetooth_activity extends AppCompatActivity {
             Toast.makeText(Bluetooth_activity.this, "bluetooth cancelled", Toast.LENGTH_SHORT).show();
         }
     }
+
+    String[] stringsearch = new String[]{"dev1"};
+
+    int ind = 0;
+
     BroadcastReceiver btbroadcastlisner = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -165,19 +178,50 @@ public class Bluetooth_activity extends AppCompatActivity {
             Toast.makeText(Bluetooth_activity.this, "action" + action, Toast.LENGTH_SHORT).show();
 
             if(BluetoothDevice.ACTION_FOUND.equals(action)){
+                Log.e("string", "inside the action found");
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-                if(device.getBondState() != BluetoothDevice.BOND_BONDED){
-                    arraysearchadapter.add(device.getName() +"\n" + device.getAddress());
-                    Toast.makeText(Bluetooth_activity.this, "dev " + device.getName(), Toast.LENGTH_SHORT).show();
+                Log.e("string", "device" + device.getName() + " "+ device.getAddress());
 
-                    btlist.setAdapter(arraysearchadapter);
+                Log.e("string", "inside the action found"+device.getBondState());
+
+                if(device.getName()!=null){
+                        stringsearch[ind] = device.getName();
+                    }else{
+                        stringsearch[ind] = "no name";
                     }
+                    ind++;
+
+                arraysearchadapter =  new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,stringsearch);
+                available_list.setAdapter(arraysearchadapter);
+
+
+//                bt1.setText(device.getName() + " " + device.getAddress());
+
+
+
+//                checkPermissions();
+//                if(device.getBondState() != BluetoothDevice.BOND_BONDED){
+//                    Log.e("string", "array adapter before");
+//                    if(device.getName()!=null){
+//                        stringsearch[ind] = device.getName();
+//                    }else{
+//                        stringsearch[ind] = "no name";
+//                    }
+//                    ind++;
+//                    bt1.setText(device.getName() + " " + device.getAddress());
+
+//                    arrayAdapter.add(device.getName());
+//                    arraysearchadapter.add(device.getName() +"\n" + device.getAddress());
+//                    Log.e("string", "array adapter after");
+//                    Toast.makeText(Bluetooth_activity.this, "dev " + device.getName(), Toast.LENGTH_SHORT).show();
+
+//                }
             }else if(BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)){
-                if(arraysearchadapter.getCount() == 0){
+//                if(arraysearchadapter.getCount() == 0){
                     Toast.makeText(Bluetooth_activity.this, "No device found", Toast.LENGTH_SHORT).show();
-                }else{
-                    Toast.makeText(Bluetooth_activity.this, "click device to connect", Toast.LENGTH_SHORT).show();
-                }
+//                }else{
+//                    Toast.makeText(Bluetooth_activity.this, "click device to connect", Toast.LENGTH_SHORT).show();
+//                }
             }
         }
     };
