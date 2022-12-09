@@ -167,7 +167,7 @@ public class Bluetooth_activity extends AppCompatActivity {
         }
     }
 
-    String[] stringsearch = new String[]{"dev1"};
+    String[] stringsearch = new String[]{"-","-","-","-","-"};
 
     int ind = 0;
 
@@ -185,7 +185,7 @@ public class Bluetooth_activity extends AppCompatActivity {
                 Log.e("string", "inside the action found"+device.getBondState());
 
                 if(device.getName()!=null){
-                        stringsearch[ind] = device.getName();
+                        stringsearch[ind] = device.getName() + " " + device.getAddress();
                     }else{
                         stringsearch[ind] = "no name";
                     }
@@ -193,11 +193,6 @@ public class Bluetooth_activity extends AppCompatActivity {
 
                 arraysearchadapter =  new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,stringsearch);
                 available_list.setAdapter(arraysearchadapter);
-
-
-//                bt1.setText(device.getName() + " " + device.getAddress());
-
-
 
 //                checkPermissions();
 //                if(device.getBondState() != BluetoothDevice.BOND_BONDED){
