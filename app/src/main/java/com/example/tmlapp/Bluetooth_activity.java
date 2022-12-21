@@ -15,11 +15,14 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 import java.util.Set;
@@ -34,6 +37,9 @@ public class Bluetooth_activity extends AppCompatActivity {
     ArrayAdapter<String> arrayAdapter, arraysearchadapter;
     TextView bt1, bt2 ,bt3;
 //    BroadcastReceiver btbroadcastlisner;
+
+    public ArrayList<BluetoothDevice> mBTDevices = new ArrayList<>();
+    public DeviceListAdapter mDeviceListAdapter;
 
 
     public static final int BT_REQ_CODE = 1;
@@ -77,6 +83,9 @@ public class Bluetooth_activity extends AppCompatActivity {
         btlist = findViewById(R.id.btlist);
         available_list = findViewById(R.id.btlistsearch);
 
+        //arraylist for available devices
+        mBTDevices = new ArrayList<>();
+
         //check if BT is supported
         BTadapter = BluetoothAdapter.getDefaultAdapter();
 
@@ -91,6 +100,10 @@ public class Bluetooth_activity extends AppCompatActivity {
 
         IntentFilter intentFilter1 = new IntentFilter(BluetoothAdapter.ACTION_DISCOVERY_FINISHED);
         registerReceiver(btbroadcastlisner,intentFilter1);
+
+        IntentFilter intentFilter2 = new IntentFilter(BluetoothDevice.ACTION_BOND_STATE_CHANGED);
+        registerReceiver(btbroadcastlisner2, intentFilter2);
+
 
         if(BTadapter.getScanMode()!=BluetoothAdapter.SCAN_MODE_CONNECTABLE_DISCOVERABLE){
             System.out.println(BluetoothAdapter.SCAN_MODE_CONNECTABLE_DISCOVERABLE);
@@ -155,6 +168,19 @@ public class Bluetooth_activity extends AppCompatActivity {
                 Log.e("string", "after");
             }
         });
+
+        // implement method to connect to bluetooth device
+        available_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                BTadapter.cancelDiscovery();
+
+                Toast.makeText(Bluetooth_activity.this, mBTDevices.get(position).getName() , Toast.LENGTH_SHORT).show();
+
+                mBTDevices.get(position).createBond();
+
+            }
+        });
     }
 
     @Override
@@ -167,10 +193,6 @@ public class Bluetooth_activity extends AppCompatActivity {
         }
     }
 
-    String[] stringsearch = new String[]{"-","-","-","-","-"};
-
-    int ind = 0;
-
     BroadcastReceiver btbroadcastlisner = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -181,42 +203,36 @@ public class Bluetooth_activity extends AppCompatActivity {
                 Log.e("string", "inside the action found");
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
                 Log.e("string", "device" + device.getName() + " "+ device.getAddress());
-
+                mBTDevices.add(device);
                 Log.e("string", "inside the action found"+device.getBondState());
 
-                if(device.getName()!=null){
-                        stringsearch[ind] = device.getName() + " " + device.getAddress();
-                    }else{
-                        stringsearch[ind] = "no name";
-                    }
-                    ind++;
-
-                arraysearchadapter =  new ArrayAdapter<String>(getApplicationContext(),android.R.layout.simple_list_item_1,stringsearch);
+//              mDeviceListAdapter = new DeviceListAdapter(context, R.layout.device_adapter_view, mBTDevices);
+                arraysearchadapter =  new ArrayAdapter(context,android.R.layout.simple_list_item_1,mBTDevices);
                 available_list.setAdapter(arraysearchadapter);
 
-//                checkPermissions();
-//                if(device.getBondState() != BluetoothDevice.BOND_BONDED){
-//                    Log.e("string", "array adapter before");
-//                    if(device.getName()!=null){
-//                        stringsearch[ind] = device.getName();
-//                    }else{
-//                        stringsearch[ind] = "no name";
-//                    }
-//                    ind++;
-//                    bt1.setText(device.getName() + " " + device.getAddress());
-
-//                    arrayAdapter.add(device.getName());
-//                    arraysearchadapter.add(device.getName() +"\n" + device.getAddress());
-//                    Log.e("string", "array adapter after");
-//                    Toast.makeText(Bluetooth_activity.this, "dev " + device.getName(), Toast.LENGTH_SHORT).show();
-
-//                }
             }else if(BluetoothAdapter.ACTION_DISCOVERY_FINISHED.equals(action)){
-//                if(arraysearchadapter.getCount() == 0){
                     Toast.makeText(Bluetooth_activity.this, "No device found", Toast.LENGTH_SHORT).show();
-//                }else{
-//                    Toast.makeText(Bluetooth_activity.this, "click device to connect", Toast.LENGTH_SHORT).show();
-//                }
+            }
+        }
+    };
+
+// broadcast receiver to bond the device
+    BroadcastReceiver btbroadcastlisner2 = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            final String action = intent.getAction();
+
+            if(action.equals(BluetoothDevice.ACTION_BOND_STATE_CHANGED)) {
+                BluetoothDevice mdevice = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+                if(mdevice.getBondState() == BluetoothDevice.BOND_BONDED){
+                   Log.d("string","on receive - BOND_BONDED");
+                }
+                if(mdevice.getBondState() == BluetoothDevice.BOND_BONDING){
+                    Log.d("string","on receive - BOND_BONDING");
+                }
+                if(mdevice.getBondState() == BluetoothDevice.BOND_NONE){
+                    Log.d("string","on receive - BOND_NONE");
+                }
             }
         }
     };
