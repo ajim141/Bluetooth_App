@@ -1,4 +1,5 @@
 <resources>
+<!--    main activity-->
     <string name="app_name">TML APP</string>
     <string name="Login_hint">Enter Login ID</string>
     <string name="password_hint">Enter Password</string>
@@ -6,4 +7,13 @@
     <string name="LoginAsadmin_button">Login as Admin</string>
     <string name="CreateNewUser_button">Create New User</string>
     <string name="BTSetting_button">BT Setting</string>
+<!--    admin login page-->
+    <string name="AdminLogInPage_text">Admin Login Page</string>
+    <string name="User_1_button">User 1</string>
+    <string name="User_2_button">User 2</string>
+    <string name="User_3_button">User 3</string>
+    <string name="Delete_User_button">Delete User</string>
+    <string name="Add_User_button">Add User</string>
+<!--    -->
+
 </resources>
