@@ -7,12 +7,14 @@ import androidx.core.app.ActivityCompat;
 import android.Manifest;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothSocket;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -24,12 +26,17 @@ import android.widget.Toast;
 
 import com.google.android.material.tabs.TabLayout;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.Set;
+import java.util.UUID;
 
 public class Bluetooth_activity extends AppCompatActivity {
 
 
+    static final UUID nUUID = UUID.fromString("54415441-5647-5341-5342-454E544F5251");
 
     Button buttonOn, buttonOff, showbutton, searchbutton;
     ListView btlist, available_list;
@@ -40,6 +47,7 @@ public class Bluetooth_activity extends AppCompatActivity {
 
     public ArrayList<BluetoothDevice> mBTDevices = new ArrayList<>();
     public DeviceListAdapter mDeviceListAdapter;
+    public ArrayList<BluetoothDevice> btdevice = new ArrayList<>();
 
 
     public static final int BT_REQ_CODE = 1;
@@ -140,18 +148,9 @@ public class Bluetooth_activity extends AppCompatActivity {
         showbutton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Set<BluetoothDevice> btdevice = BTadapter.getBondedDevices();
-                String[] string = new String[btdevice.size()];
-                int index = 0;
-
-                if(btdevice.size()>0){
-                    for(BluetoothDevice device : btdevice){
-                        string[index] = device.getName();
-                        index++;
-                    }
-                    arrayAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1,string);
-                    btlist.setAdapter(arrayAdapter);
-                }
+                btdevice = new ArrayList<BluetoothDevice>(BTadapter.getBondedDevices());
+                arrayAdapter = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_list_item_1,btdevice);
+                btlist.setAdapter(arrayAdapter);
             }
         });
 
@@ -168,6 +167,66 @@ public class Bluetooth_activity extends AppCompatActivity {
                 Log.e("string", "after");
             }
         });
+
+        btlist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                BTadapter.cancelDiscovery();
+
+                Toast.makeText(Bluetooth_activity.this, btdevice.get(position).getName() , Toast.LENGTH_SHORT).show();
+
+                BluetoothDevice remote = BTadapter.getRemoteDevice(btdevice.get(position).getAddress());
+                Log.d("string","remote +"+ btdevice.get(position).getAddress() + btdevice.get(position).getName());
+
+                BluetoothSocket btSocket = null;
+                try {
+                    btSocket = remote.createRfcommSocketToServiceRecord(nUUID);
+                    Log.d("string","btsocket +"+ btSocket);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+//
+                do {
+                    try {
+                        btSocket.connect();
+                        Log.d("string","isconnected +"+ btSocket.isConnected());
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }while(!btSocket.isConnected());
+
+                // data send to remote device
+                OutputStream outputStream = null;
+                try {
+                    outputStream = btSocket.getOutputStream();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                try {
+                    outputStream.write(48);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+//                // data receiving from the remote device
+//                InputStream inputStream = null;
+//                try {
+//                    inputStream = btSocket.getInputStream();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//                try {
+//                    inputStream.skip(inputStream.available());
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//                try {
+//                    int b = inputStream.read();
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+            }
+        });
+
 
         // implement method to connect to bluetooth device
         available_list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
