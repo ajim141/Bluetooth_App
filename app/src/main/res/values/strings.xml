@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">TML APP</string>
+    <string name="Login_hint">Enter Login ID</string>
+    <string name="password_hint">Enter Password</string>
+    <string name="Login_Button">Log in</string>
+    <string name="LoginAsadmin_button">Login as Admin</string>
+    <string name="CreateNewUser_button">Create New User</string>
+    <string name="BTSetting_button">BT Setting</string>
 </resources>

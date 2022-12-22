@@ -149,7 +149,13 @@ public class Bluetooth_activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 btdevice = new ArrayList<BluetoothDevice>(BTadapter.getBondedDevices());
-                arrayAdapter = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_list_item_1,btdevice);
+
+                //
+//                ArrayList<String> btdevices = new ArrayList<>(btdevice.toString());
+                // if to array works then it is all fine
+                arrayAdapter = new ArrayAdapter(getApplicationContext(), android.R.layout.simple_list_item_1,btdevice.toArray());
+
+
                 btlist.setAdapter(arrayAdapter);
             }
         });

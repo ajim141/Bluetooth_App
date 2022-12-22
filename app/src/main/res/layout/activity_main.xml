@@ -16,6 +16,7 @@
         android:textSize="20dp"
         android:textAlignment="center"
         android:textStyle="bold"
+        android:layout_centerInParent="true"
         android:layout_alignParentTop="true"
         />
 
@@ -23,46 +24,46 @@
         android:id="@+id/login_logid"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter Login ID"
-        android:inputType="text"
-        android:layout_below="@id/logintext"/>
+        android:layout_below="@id/logintext"
+        android:hint="@string/Login_hint"
+        android:inputType="text" />
+<!--    android:hint="Enter Login ID"-->
 
     <EditText
         android:id="@+id/login_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter Password"
-        android:inputType="numberPassword"
         android:layout_below="@id/login_logid"
-        />
+        android:hint="@string/password_hint"
+        android:inputType="numberPassword" />
 
     <Button
         android:id="@+id/loginButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAllCaps="false"
-        android:text="LogIN"
         android:layout_below="@+id/login_password"
-        >
-    </Button>
+        android:text="@string/Login_Button"
+        android:textAllCaps="false"
+        android:layout_centerInParent="true"
+        ></Button>
 
     <Button
         android:id="@+id/loginAdminButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textAllCaps="false"
-        android:text="LogInAsAdmin"
         android:layout_below="@+id/loginButton"
-        >
-    </Button>
+        android:layout_centerInParent="true"
+        android:text="@string/LoginAsadmin_button"
+        android:textAllCaps="false"></Button>
 
     <Button
         android:id="@+id/createNewUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAllCaps="false"
-        android:text="Create New User"
+        android:text="@string/CreateNewUser_button"
         android:layout_below="@+id/loginAdminButton"
+        android:layout_centerInParent="true"
         >
     </Button>
 
@@ -71,11 +72,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAllCaps="false"
-        android:text="BT Setting"
+        android:text="@string/BTSetting_button"
         android:layout_below="@+id/createNewUser"
+        android:layout_centerInParent="true"
         >
     </Button>
-
-
-
 </RelativeLayout>
