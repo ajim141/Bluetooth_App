@@ -14,6 +14,12 @@
     <string name="User_3_button">User 3</string>
     <string name="Delete_User_button">Delete User</string>
     <string name="Add_User_button">Add User</string>
-<!--    -->
+<!--    bluetooth activity-->
+    <string name="Bonded_Device_text">Bonded Device</string>
+    <string name="Available_Device_text">Available Device</string>
+    <string name="BT_ON_button">BT ON</string>
+    <string name="show_button">show</string>
+    <string name="search_button">search</string>
+    <string name="BT_Off_button">BT OFF</string>
 
 </resources>
