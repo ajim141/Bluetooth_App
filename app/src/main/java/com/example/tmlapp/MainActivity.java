@@ -78,7 +78,29 @@ public class MainActivity extends AppCompatActivity {
         if (res.getCount() <= 0) {
             create_new_user.setText("create admin account");
         }
+        ClickListeners();
+    }
 
+    private void checkPermissions(){
+        int permission1 = ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        int permission2 = ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_SCAN);
+        if (permission1 != PackageManager.PERMISSION_GRANTED) {
+            // We don't have permission so prompt the user
+            ActivityCompat.requestPermissions(
+                    this,
+                    PERMISSIONS_STORAGE,
+                    1
+            );
+        } else if (permission2 != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(
+                    this,
+                    PERMISSIONS_LOCATION,
+                    1
+            );
+        }
+    }
+
+    public void ClickListeners(){
         // creating new user - done
         // saving user data somewhere on external or internal storage
         // sending the data over BT
@@ -108,38 +130,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         // admin login button
-         loginasadmin.setOnClickListener(new View.OnClickListener() {
-             @Override
-             public void onClick(View v) {
-                 // getting the user input
-                 String loginidTxt = loginid.getText().toString();
-                 String loginpasswordTxt = loginpassword.getText().toString();
-
-                 // getting the values from database
-                 Cursor res = db.getuserlogindata();
-                 if(res.getCount() <= 0){
-                     Toast.makeText(MainActivity.this,"create admin account",Toast.LENGTH_SHORT).show();
-                     return;
-                 }
-                 StringBuffer buffer = new StringBuffer();
-                 res.moveToFirst();
-
-                 buffer.append("name : "+ res.getString(0)+"\n");
-                 buffer.append("password : "+ res.getString(3)+"\n");
-
-                 if (loginidTxt.equals(res.getString(0))) {
-                     if (loginpasswordTxt.equals(res.getString(3))) {
-                         Intent intent = new Intent(MainActivity.this, Admin_LogIn_Page.class);
-                         startActivity(intent); }
-                 }else{
-                     Toast.makeText(MainActivity.this,"Either userid or password is wrong",Toast.LENGTH_SHORT).show();
-                 } }
-         });
-
-        // login particular user comparing login id and password
-        // comparing login id and password from BT or local storage
-        // fetching the user data from BT or local storage
-        login_button.setOnClickListener(new View.OnClickListener() {
+        loginasadmin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // getting the user input
@@ -147,61 +138,74 @@ public class MainActivity extends AppCompatActivity {
                 String loginpasswordTxt = loginpassword.getText().toString();
 
                 // getting the values from database
-                Cursor res = db.getalluserdata();
-
-                if(res.getCount() == 0){
-                    Toast.makeText(MainActivity.this,"database is empty",Toast.LENGTH_SHORT).show();
+                Cursor res = db.getuserlogindata();
+                if(res.getCount() <= 0){
+                    Toast.makeText(MainActivity.this,"create admin account",Toast.LENGTH_SHORT).show();
                     return;
                 }
-                if(res.getCount() == 1){
-                    Toast.makeText(MainActivity.this,"create user account",Toast.LENGTH_SHORT).show();
-                    return;
-                }
-
                 StringBuffer buffer = new StringBuffer();
-                while(res.moveToNext()){
-                    buffer.append("name : "+ res.getString(0)+"\n");
-                    buffer.append("dob : "+ res.getString(2)+"\n");
-                    buffer.append("password : "+ res.getString(3)+"\n");
+                res.moveToFirst();
 
-                    Log.e("string", "onClick: "+  res.getString(0));
-                    Log.e("string", "onClick: "+  res.getString(3));
+                buffer.append("name : "+ res.getString(0)+"\n");
+                buffer.append("password : "+ res.getString(3)+"\n");
 
-                    if (loginidTxt.equals(res.getString(0))) {
-                        if (loginpasswordTxt.equals(res.getString(3))) {
-                            Intent intent = new Intent(MainActivity.this, User_Log_In.class);
-                            intent.putExtra("name",res.getString(0));
-                            intent.putExtra("dob",res.getString(2));
-                            startActivity(intent);
-                        }
-                    }else{
-                        Toast.makeText(MainActivity.this,"Either userid or password is wrong",Toast.LENGTH_SHORT).show();
-                    }
-                }
-            }
+                if (loginidTxt.equals(res.getString(0))) {
+                    if (loginpasswordTxt.equals(res.getString(3))) {
+                        Intent intent = new Intent(MainActivity.this, Admin_LogIn_Page.class);
+                        startActivity(intent); }
+                }else{
+                    Toast.makeText(MainActivity.this,"Either userid or password is wrong",Toast.LENGTH_SHORT).show();
+                } }
         });
-    }
 
 
-    private void checkPermissions(){
-        int permission1 = ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE);
-        int permission2 = ActivityCompat.checkSelfPermission(this, Manifest.permission.BLUETOOTH_SCAN);
-        if (permission1 != PackageManager.PERMISSION_GRANTED) {
-            // We don't have permission so prompt the user
-            ActivityCompat.requestPermissions(
-                    this,
-                    PERMISSIONS_STORAGE,
-                    1
-            );
-        } else if (permission2 != PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(
-                    this,
-                    PERMISSIONS_LOCATION,
-                    1
-            );
-        }
+        // login particular user comparing login id and password
+        // comparing login id and password from BT or local storage
+        // fetching the user data from BT or local storage
+        login_button.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                // getting the user input
+                                                String loginidTxt = loginid.getText().toString();
+                                                String loginpasswordTxt = loginpassword.getText().toString();
+
+                                                // getting the values from database
+                                                Cursor res = db.getalluserdata();
+
+                                                if(res.getCount() == 0){
+                                                    Toast.makeText(MainActivity.this,"database is empty",Toast.LENGTH_SHORT).show();
+                                                    return;
+                                                }
+                                                if(res.getCount() == 1){
+                                                    Toast.makeText(MainActivity.this,"create user account",Toast.LENGTH_SHORT).show();
+                                                    return;
+                                                }
+
+                                                StringBuffer buffer = new StringBuffer();
+                                                while(res.moveToNext()){
+                                                    buffer.append("name : "+ res.getString(0)+"\n");
+                                                    buffer.append("dob : "+ res.getString(2)+"\n");
+                                                    buffer.append("password : "+ res.getString(3)+"\n");
+
+                                                    Log.e("string", "onClick: "+  res.getString(0));
+                                                    Log.e("string", "onClick: "+  res.getString(3));
+
+                                                    if (loginidTxt.equals(res.getString(0))) {
+                                                        if (loginpasswordTxt.equals(res.getString(3))) {
+                                                            Intent intent = new Intent(MainActivity.this, User_Log_In.class);
+                                                            intent.putExtra("name",res.getString(0));
+                                                            intent.putExtra("dob",res.getString(2));
+                                                            startActivity(intent);
+                                                        }
+                                                    }else{
+                                                        Toast.makeText(MainActivity.this,"Either userid or password is wrong",Toast.LENGTH_SHORT).show(); }
+                                                }
+                                            }
+                                        }
+        );
     }
 }
+
 
 
 //    @Override

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<RelativeLayout
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -9,93 +9,103 @@
     tools:context=".CreateNewUser">
 
     <TextView
+        android:id="@+id/createNewUsertext"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="CreateNewUser"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="100dp"
+        android:text="@string/CreateNewUserText"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
         android:textSize="30dp"
+        android:textColor="@color/black"
         ></TextView>
 
-    <LinearLayout
-        android:layout_marginLeft="100dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="30dp">
-
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_marginLeft="40dp"
-            android:src="@drawable/istockphoto_522855255_612x612"
-            >
-        </ImageView>
+    <ImageView
+        android:id="@+id/createNewUserImage"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_below="@+id/createNewUsertext"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="10dp"
+        android:src="@drawable/istockphoto_522855255_612x612">
+    </ImageView>
 
         <EditText
         android:id="@+id/createNewUser_name"
         android:layout_width="150dp"
-        android:layout_height="40dp"
-        android:hint="enter your name"
+        android:layout_height="wrap_content"
+        android:hint="@string/enteryourname_hint"
         android:inputType="text"
+        android:layout_below="@+id/createNewUserImage"
+        android:layout_centerInParent="true"
         ></EditText>
 
         <EditText
             android:id="@+id/createNewUser_phone"
             android:layout_width="150dp"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:hint="enter phone no"
             android:inputType="phone"
+            android:layout_below="@+id/createNewUser_name"
+            android:layout_centerInParent="true"
             ></EditText>
 
     <EditText
         android:id="@+id/createNewUser_DOB"
         android:layout_width="150dp"
-            android:layout_height="40dp"
-            android:hint="enter DOB"
+            android:layout_height="wrap_content"
+            android:hint="@string/enteryourDOB_hint"
         android:inputType="date"
+        android:layout_below="@+id/createNewUser_phone"
+        android:layout_centerInParent="true"
             ></EditText>
 
         <EditText
         android:id="@+id/createNewUser_Password"
         android:layout_width="180dp"
-        android:layout_height="40dp"
-        android:hint="enter your password"
+        android:layout_height="wrap_content"
+        android:hint="@string/enteryourpassword_hint"
         android:inputType="numberPassword"
+            android:layout_centerInParent="true"
+            android:layout_below="@+id/createNewUser_DOB"
             ></EditText>
 
         <EditText
             android:id="@+id/createNewUser_confirmPassword"
             android:layout_width="200dp"
-            android:layout_height="40dp"
-            android:hint="confirm your password"
+            android:layout_height="wrap_content"
+            android:hint="@string/confirmyourpassword_hint"
             android:inputType="numberPassword"
+            android:layout_below="@+id/createNewUser_Password"
+            android:layout_centerInParent="true"
             ></EditText>
 
         <Button
             android:id="@+id/createNewUser_save"
             android:layout_marginTop="40dp"
             android:layout_width="140dp"
-            android:layout_height="40dp"
-            android:text="save"
-            android:layout_marginLeft="30dp">
+            android:layout_height="wrap_content"
+            android:text="@string/Save_button"
+            android:layout_below="@+id/createNewUser_confirmPassword"
+            android:layout_centerInParent="true"
+            >
         </Button>
         <Button
             android:id="@+id/createNewUser_back"
-            android:layout_marginTop="40dp"
             android:layout_width="140dp"
-            android:layout_height="40dp"
-            android:text="back"
-            android:layout_marginLeft="30dp">
+            android:layout_height="wrap_content"
+            android:text="@string/Back_button"
+            android:layout_below="@+id/createNewUser_save"
+            android:layout_centerInParent="true"
+            >
         </Button>
 
         <Button
             android:id="@+id/createNewUser_view"
-            android:layout_marginTop="40dp"
             android:layout_width="140dp"
             android:layout_height="40dp"
-            android:text="view"
-            android:layout_marginLeft="30dp">
+            android:text="@string/View_button"
+            android:layout_below="@+id/createNewUser_back"
+            android:layout_centerInParent="true">
         </Button>
-    </LinearLayout>
-</LinearLayout>
+</RelativeLayout>

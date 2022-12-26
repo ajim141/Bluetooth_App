@@ -21,5 +21,16 @@
     <string name="show_button">show</string>
     <string name="search_button">search</string>
     <string name="BT_Off_button">BT OFF</string>
+<!--create new user-->
+    <string name="CreateNewUserText">Create New User</string>
+    <string name="enteryourname_hint">Enter Your Name</string>
+    <string name="enteryourDOB_hint">Enter Your DOB</string>
+    <string name="enteryourpassword_hint">Enter Your Password</string>
+    <string name="confirmyourpassword_hint">Confirm Your Password</string>
+    <string name="Save_button">Save</string>
+    <string name="Back_button">Back</string>
+    <string name="View_button">View</string>
+
+
 
 </resources>

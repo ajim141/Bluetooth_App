@@ -14,6 +14,7 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
@@ -194,15 +195,18 @@ public class Bluetooth_activity extends AppCompatActivity {
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
-//
+
+                int i =0;
                 do {
                     try {
+                        
                         btSocket.connect();
                         Log.d("string","isconnected +"+ btSocket.isConnected());
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
-                }while(!btSocket.isConnected());
+                    i++;
+                }while(!btSocket.isConnected() && i<4);
 
                 // data send to remote device
                 OutputStream outputStream = null;
@@ -249,6 +253,43 @@ public class Bluetooth_activity extends AppCompatActivity {
 
             }
         });
+
+
+        static final int STATE_LISTENING = 1;
+        static final int STATE_CONNECTING=2;
+        static final int STATE_CONNECTED=3;
+        static final int STATE_CONNECTION_FAILED=4;
+        static final int STATE_MESSAGE_RECEIVED=5;
+
+        Handler handler=new Handler(new Handler.Callback() {
+            @Override
+            public boolean handleMessage(Message msg) {
+
+                switch (msg.what)
+                {
+                    case STATE_LISTENING:
+                        status.setText("Listening");
+                        break;
+                    case STATE_CONNECTING:
+                        status.setText("Connecting");
+                        break;
+                    case STATE_CONNECTED:
+                        status.setText("Connected");
+                        break;
+                    case STATE_CONNECTION_FAILED:
+                        status.setText("Connection Failed");
+                        break;
+                    case STATE_MESSAGE_RECEIVED:
+                        byte[] readBuff= (byte[]) msg.obj;
+                        String tempMsg=new String(readBuff,0,msg.arg1);
+                        msg_box.setText(tempMsg);
+                        break;
+                }
+                return true;
+            }
+        });
+
+
     }
 
     @Override
